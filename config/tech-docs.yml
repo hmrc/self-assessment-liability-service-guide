@@ -2,7 +2,7 @@
 service_name: Self Assessment Liability Api Service Guide
 
 # The route that will be used to access this site (with tailing slash)
-service_link: /guides/example-service-guide/
+service_link: /guides/self-assessment-liability/
 
 # ================================================
 # You shouldn't need to edit anything below here
