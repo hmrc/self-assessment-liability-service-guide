@@ -3,6 +3,7 @@ USER root
 RUN apt update
 RUN git clone https://github.com/rbenv/rbenv.git /root/.rbenv
 RUN git clone https://github.com/rbenv/ruby-build.git /root/.rbenv/plugins/ruby-build
+RUN git fetch --tags
 ENV PATH=/root/.rbenv/shims:/root/.rbenv/bin:/root/.nodenv/shims:/root/.nodenv/bin:$PATH
 
 CMD ["/bin/bash"]
