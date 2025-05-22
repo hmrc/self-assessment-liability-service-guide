@@ -48,6 +48,3 @@ max_toc_heading_level: 2
 prevent_indexing: false
 
 show_contribution_banner: false
-
-# See guidance here: https://confluence.tools.tax.service.gov.uk/pages/viewpage.action?pageId=1070367564
-use_service_link_for_favicon: true
