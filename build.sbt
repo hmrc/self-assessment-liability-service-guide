@@ -1,6 +1,6 @@
-val appName = "service-guide-skeleton"
+val appName = "self-assessment-liability-service-guide"
 
-scalaVersion := "2.13.12"
+scalaVersion := "3.3.6"
 
 ThisBuild / libraryDependencySchemes += "org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always
 ThisBuild / semanticdbEnabled := true
