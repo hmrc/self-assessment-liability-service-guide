@@ -1,14 +1,14 @@
 ---
-title: Example Service Guide
+title: View Self Assessment account service guide
 weight: 1
 ---
 
-# Example Service Guide
+# View Self Assessment account service guide
 
-Version 1.0 issued 1 January 2020
+Version 1.0 issued 1 July 2025
 ***
 
-This guide explains how you can integrate your software with our API to view Self Assessment[1] liabilities. It shows how the APIs fit into various end-to-end user journeys. It is intended to help software developers, designers, product owners or business analysts understand how your software needs to interact with HMRC systems.
+This service guide explains how you can integrate your software with the [View Self Assessment Account API][TBD].
 
 ## Overview
 
@@ -34,4 +34,4 @@ To use these APIs, the end user must:
 
 ## Changelog
 
-[1](https://www.gov.uk/understand-self-assessment-bill)
+[TBD]: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
