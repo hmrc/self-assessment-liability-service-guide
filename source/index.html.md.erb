@@ -4,3 +4,67 @@ weight: 1
 
 <%= partial 'documentation/partials/google_tag_manager_js' %>
 <%= partial 'documentation/index' %>
+
+# View Self Assessment account service guide
+
+Version 1.0 issued 1 July 2025
+***
+
+This service guide explains how you can integrate your software with the [View Self Assessment Account API][TBD].
+
+## Overview
+
+The View Self Assessment Account API provides third-party systems and developers with access to a structured, itemised view of a taxpayer's Self Assessment (SA) account. It enables trusted external systems such as agent platforms or accounting software to retrieve up-to-date details of charges, payments, credits, and interest applied to an individual's SA account.
+
+This service is read-only and is designed to support better transparency and reconciliation of SA accounts, helping reduce user confusion and contributing to the wider HMRC goal of preventing misallocated payments.
+
+### Purpose
+To give third-party software real-time or on-demand access to a taxpayer’s SA account breakdown so that individuals and agents can:
+
+* Verify how payments have been applied
+* Reconcile account activity with their own records
+* Understand outstanding liabilities and due dates
+
+### Key features
+
+* Granular breakdown of SA transactions: charges, payments, credits, and interest
+* Timestamps and effective dates for accurate reconciliation
+* Status indicators (e.g. due, cleared, overdue)
+* Totals and running balances where applicable
+
+### What this service does
+
+* Exposes detailed Self Assessment account data via a secure API
+* Supports integration into agent and accounting platforms
+* Facilitates user understanding of payment application and account balance
+
+### What this service does not do
+
+* Accept, process, or allocate payments
+* Modify or update account data
+* File returns or calculate tax liabilities
+
+### Intended users
+
+* Third-party developers building tax/accounting software
+* Digital agents integrating with HMRC systems on behalf of clients
+
+This API plays a supporting role in HMRC’s efforts to improve payment accuracy and user understanding by equipping external systems with reliable SA account data.
+
+## End-to-end user journeys
+
+## Related API documentation
+
+## Changelog
+
+**Version 1.0**
+
+1 July 2025
+
+* Initial draft version
+
+15 July 2025
+
+* Update overview and changelog content
+
+[TBD]: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
