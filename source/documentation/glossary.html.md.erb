@@ -1,0 +1,152 @@
+---
+title: Glossary
+weight: 2
+---
+
+<%= partial 'documentation/partials/google_tag_manager_js' %>
+
+# Glossary
+
+## Terminology
+
+Useful terminology links:
+https://www.gov.uk/hmrc-internal-manuals/self-assessment-manual
+
+#### 6 years +1
+The Self-Assessment Liabilities API provides third parties with data for the past 7 years, more often known as 6+1 years, from the date of the request. The +1 year refers to the current year.
+
+#### Agents
+A person or organisation authorised to deal with HMRC on behalf of an individual or business taxpayer. Agents are typically accountants, tax advisers, or other professionals who are appointed by the taxpayer to deal with their tax affairs on their behalf.
+
+#### Affinity Group
+An Affinity Group is a classification used by HMRC to identify the type of user accessing HMRC services, such as individual, organisation, or agent, based on their Government Gateway credentials.
+
+#### Allocation
+When a payment is made to an account and is in credit it should/will be allocated to liabilities but this is not immediate. The purpose of the overarching project (Digital Interfaces) is to reduce/prevent the following scenarios:
+
+Unallocated payments (paid to the right bank account but there is no charge on the account for the payment to be allocated to)
+Unmatched payments (these are payments applied to the wrong account or tax period. This can happen even if a reference is provided, but it’s incorrect or outdated.
+
+#### Amendment
+A change to a tax return, this could be sent by the taxpayer or an agent authorised to act on their behalf.
+
+#### API (Application Programming Interface)
+An API is a set of rules and protocols that allows different software applications to communicate with each other. APIs enable the integration of data, services, and functionalities from various applications, making it easier for developers to build complex systems without starting from scratch.
+
+#### Auth Service
+HMRC service that enables user authentication. It expects an auth token then returns  information about a tax payer including whether they are an individual or an agent, together with which tax regimes they are liable for/ credential strength (weak/strong). This service checks users credentials to determine whether to grant access.
+
+#### Auth Token
+A 16 digit value that the Auth service can unencrypt into person identifiable details including name, DOB and surname.  It acts like a secret identity used to call the SA API in a secure way to prevent the person's identifiable details from being hacked. Instead the individual is able to submit the 16 digit value that the auth service can translate.
+
+#### Charges
+A charge is the formal record of an amount due (by the tax payer) in HMRC’s systems. Occasionally these can actually be a credit rather than a debit. Charges are also known as liabilities (which is the preferred terminology used for charges).
+
+Each charge includes:
+
+* A unique customer reference
+* A unique charge reference
+* A description of why the money is owed
+* The amount
+* The tax type(s) involved
+* The period the liability relates to
+* A due date
+
+#### Citizen Details API
+When a customer contacts HMRC (e.g. to claim a repayment) this API is used to retrieve customer details and confirm their eligibility.
+
+#### Coded out
+When HMRC makes a payment plan with a taxpayer, their tax code is altered to manage that arrangement and ensure they are charged correctly. Being coded out and having a payment plan are two separate things. If you are coded out the underpayment is automatically collected, a payment plan is something that is agreed with our debt management team and payments would be collected by Direct Debit. Either way, no further penalties will be charged. Taxpayers are only coded out until the underpayment is cleared. Coded out is an internal (non-userfacing) term/status to indicate that their tax code has been changed for this reason.
+
+#### Coded Out Amount
+A coded out amount is a debt that HMRC collects by reducing the taxpayer’s tax-free allowance in their PAYE tax code. This results in more tax being deducted from their salary, effectively recovering the debt over time.
+
+A person or organisation authorised to deal with HMRC on behalf of an individual or business taxpayer. Agents are typically accountants, tax advisers, or other professionals who are appointed by the taxpayer to deal with their tax affairs on their behalf.
+
+#### Confidence Levels
+In order to allow an HMRC visitor to access tax services we must have some confidence that the person is who they claim to be.  The identity confidence level required will differ depending on what the service allows a visitor to see or do.  A service which allows a visitor to submit some basic information about their financial history for example may require a lower confidence level than a service which allows a visitor to view or amend personal sensitive information.
+
+#### Credits & Payments
+Credits refer to payments made to HMRC by the taxpayer Credits could come from a payment, a return showing money due back to the taxpayer or an assessment made by an HMRC officer showing money is due back to the taxpayer. Credit may also be used to indicate that an account has a positive balance. For example, a taxpayer may have overpaid so the account is in credit and the excess is due to be refunded by a repayment.
+
+#### Current position
+Current Position is a summary of the following balances and dates on an account:
+
+* Total Overdue Balance
+* Total Payable Balance
+* Payable Due Date
+* Total Pending Balance
+* Pending Due Date
+* Total Balance
+T
+his current position includes both positive and negative amounts due for different years. For example, a taxpayer might have overpaid for one tax year but owe for another
+
+#### Debits
+A debit is a sum that is payable by the taxpayer to HMRC. Established penalties, liabilities and interest may be included in a debit.
+
+#### HIP
+Hybrid Integration Platform is a system which stores Self-Assessment Liabilities which can be searched for using a valid UTR.
+
+#### Interest
+Interest is an amount added to the due balance if payment is late. It can also be applied positively when an account has been overpaid.
+
+#### Enrollments
+An enrolment is one of the data items returned from Auth, it holds information about the tax regimes a user is subscribed to. For example a company can be liable to pay VAT and Corporation tax so they would have to subscribe to those services and then when they are successfully subscribed, an enrolment unique to those services with an identifier unique to that specific company will be created for them. An Enrolment will have a key that refers to the service and an identifier that refers to an individual/company/agent
+
+* IR-SA is the enrollment id assigned to all affinity groups who are registered on the old self-assessment tax regime
+* MTD is the enrollment id assigned to all affinity groups who are registered on the new self-assessment tax regime
+
+#### Liabilities
+
+A liability refers to the total amount a taxpayer owes to HMRC in a given tax year. This includes:
+* Tax (e.g. Income Tax, VAT, CGT)
+* Penalties
+* Interest
+* Other statutory debts
+
+It is a broader concept that represents the taxpayer’s obligation to pay. For example, a Self Assessment liability might include a balancing payment due on 31 January, plus any late payment penalties or interest.
+
+#### MTDITID
+A unique system generated enrollment id with a which can be traced back to an individual or an individual and their agent, this identifier is used for the HMRC-MTD-IT enrolment similar to how a UTR is the identifier for IR-SA tax regime
+
+#### Payable Due Date
+The payable due date is the legal deadline by which a tax payment must be received by HMRC. It is defined in legislation as a specific calendar date, not by reference to working days.
+
+#### Penalties
+Penalties are punitive fees that are added to a tax payer’s account.
+
+They can be incurred as a result of:
+
+* late to register for self assessment
+* sending a tax return after the deadline
+* late payment
+
+Penalties may be applied in addition to accruing interest. Historically, Penalties were known as Surcharges. Although the term is no longer used by HMRC it may persist in older documents and data.
+
+https://www.gov.uk/self-assessment-tax-returns/deadlines
+https://www.gov.uk/self-assessment-tax-returns/penalties
+
+#### Pending Due Date - Louise to check (future payments?)
+
+#### Repayments
+If a taxpayer has overpaid for a tax year then HMRC will refund the amount overpaid to the taxpayer’s bank account, this is known as a repayment. Historically Repayments were known as Refunds and this name may persist in older documents and data.
+
+#### Statement
+Similar to a bank statement. Each taxpayer with an SA liability is issued periodically (unless the issue of statements has been inhibited) with a statement known as the ‘Self Assessment Statement’ (up to June 2006 this was known as the ‘Self Assessment - Statement of Account’). The statement shows the current position on the taxpayer record.
+source:  https://www.gov.uk/hmrc-internal-manuals/self-assessment-manual/sam130001
+
+#### Tax code
+The rate at which people are taxed is managed using tax codes.
+https://www.gov.uk/tax-codes
+
+#### Total Overdue Balance
+The sum of all charges whose Due Date is in the past
+
+#### Total Pending Balance
+The sum of all charges whose Due Date is 30 days or more
+
+#### Total Payable Balance
+Total Payable Balance is the overall total amount due from a SA taxpayer. Most commonly this will be the amount owed but it is possible that no money is due, or that the account has a positive balance from overpayment.
+
+#### Unique Tax Reference
+A UTR number is your 'unique taxpayer reference' number. HMRC assigns each self-assessment taxpayer a different number in order to track their tax records. All UTR numbers have 10 digits, and sometimes there's a letter 'K' at the end.Once an individual gets their UTR number it stays with them all your life - just like their National Insurance number.
