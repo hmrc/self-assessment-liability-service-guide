@@ -22,19 +22,26 @@ A person or organisation authorised to deal with HMRC on behalf of an individual
 An Affinity Group is a classification used by HMRC to identify the type of user accessing HMRC services, such as individual, organisation, or agent, based on their Government Gateway credentials.
 
 #### Allocation
-When a payment is made to an account and is in credit it should/will be allocated to liabilities but this is not immediate. The purpose of the overarching project (Digital Interfaces) is to reduce/prevent the following scenarios:
+When a payment is made, it will be allocated towards outstanding liabilities. However, the allocation is not immediate and may not be reflected on the customer’s Self Assessment account straight away.
 
-Unallocated payments (paid to the right bank account but there is no charge on the account for the payment to be allocated to)
-Unmatched payments (these are payments applied to the wrong account or tax period. This can happen even if a reference is provided, but it’s incorrect or outdated.
+There are two common allocation issues this service helps to prevent:
+
+*Unallocated payments*
+
+These are payments made using the correct UTR (Unique Taxpayer Reference), but there is no charge or liability currently present on the account for the payment to be allocated to. This can result in the payment remaining in credit until a matching charge is created.
+
+*Unmatched payments*
+
+These occur when a payment is made using an incorrect or outdated UTR. In these cases, there is no matching Self Assessment account for the payment to be applied to, which can result in delays or misallocations.
 
 #### Amendment
-A change to a tax return, this could be sent by the taxpayer or an agent authorised to act on their behalf.
+A change to a tax return, this could be sent by the taxpayer or an agent authorised to act on their behalf. An amendment could also be as a result of a HMRC investigation.
 
 #### API (Application Programming Interface)
 An API is a set of rules and protocols that allows different software applications to communicate with each other. APIs enable the integration of data, services, and functionalities from various applications, making it easier for developers to build complex systems without starting from scratch.
 
 #### Charges
-A charge is the formal record of an amount due (by the tax payer) in HMRC’s systems. Occasionally these can actually be a credit rather than a debit. Charges are also known as liabilities (which is the preferred terminology used for charges).
+A charge is the formal record of an amount due (by the tax payer) in HMRC’s systems. A charge could be in credit if the customer has paid too much towards it, but initially the charge will always be a debit. Charges are also known as liabilities (which is the preferred terminology used for charges).
 
 Each charge includes:
 

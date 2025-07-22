@@ -7,80 +7,62 @@ weight: 4
 
 # Error Responses
 
-This section explains the error responses that may be returned by the View Self Assessment Account API. It describes the meaning of each error, common causes, and what action developers or end users should take.
+This section explains the error responses that may be returned by the View Self Assessment Account API. It describes the meaning of each error, root causes, and what action developers or end users should take to resolve them.
 
 All error responses follow standard HTTP status codes.
 
----
-
 ## 400 Bad Request
-**Invalid request format or parameters.**
+**Message:** Invalid request format or parameters.
 
 The request was malformed, missing required data, or included unsupported parameters. This error usually relates to how the request was constructed.
 
-| Scenario | Cause | What to do |
-|----------|-------|------------|
-| Missing authentication token | Request is missing the `Authorization` header | Ensure a valid bearer token is provided (unlikely unless integration is misconfigured) |
-| Invalid or missing UTR | UTR is missing, not 10 digits, or contains invalid characters | Provide a valid 10-digit numeric UTR in the request path or body |
+| **Scenario**                                       | **Cause**                                                         | **What to do**                                   |
+| -------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------ |
+| Missing authentication token                       | The request does not include an `Authorization` header            | Ensure the request includes a valid bearer token |
+| Invalid or missing Unique Taxpayer Reference (UTR) | The UTR is missing, not 10 digits, or contains invalid characters | Include a valid 10-digit UTR in the request path |
 
 > **Note:** Check your integration against the [API specification](https://developer.service.hmrc.gov.uk/api-documentation) to avoid request format issues.
 
----
-
 ## 401 Unauthorized
-**Authorisation failed.**
+**Message:** Authorisation failed.
 
-The agent’s credentials are valid and the UTR is correct, but HMRC could not confirm access permission for this client.
+The request could not be completed because the required authorisation was not confirmed. If you are an agent, this may occur when valid credentials and a correct UTR are provided, but HMRC cannot verify that you have permission to access the client’s data.
 
-| Scenario | Cause | What to do |
-|----------|-------|------------|
-| Agent not authorised | Agent has no active relationship with the client | Ask the client to authorise the agent via the appropriate HMRC service (e.g. MTD or traditional SA) |
-| Credentials mismatch | The credentials used differ from those used during authorisation | Use the same Government Gateway ID or Agent Services Account used when authorisation was granted |
-| Agent access expired or revoked | A previous authorisation is no longer valid | Ask the client to reauthorise the agent |
-| Confidence level not met (250) | The individual has not verified their identity to the required level | Ask the client to log in and complete identity verification in their [HMRC personal tax account](https://www.gov.uk/personal-tax-account) |
-
-> **Note:** HMRC cannot confirm if an agent is enrolled in both legacy and MTD services. Both enrolment and authorisation must be in place and match the credentials used.
-
----
+| **Scenario**                                        | **Cause**                                                               | **What to do**                                                                  |
+| --------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Agent cannot access client’s Self Assessment data   | The agent does not have an active relationship with the client          | TBC: Provide link or steps for agents to add clients                            |
+| Individual cannot access their Self Assessment data | HMRC cannot confirm the user’s identity with a high level of confidence | TBC: Confirm who the user should contact — API Platform Support or another team |
 
 ## 403 Forbidden
-**Access not permitted.**
+**Message:** Access not permitted.
 
-The request was valid, but the agent does not have the correct permissions or enrolments to access the Self Assessment data.
+The request was valid, but the user is not registered for Self Assessment and cannot access this data.
 
-| Scenario | Cause | What to do |
-|----------|-------|------------|
-| No Self Assessment enrolment | The agent is not enrolled for IR-SA-AGENT or MTD for Income Tax | Enrol as an agent using: [Sign up for MTD for ITSA](https://www.gov.uk/guidance/sign-up-your-client-for-making-tax-digital-for-income-tax) |
-| Agent type is “supporting” | The credentials used belong to a supporting user, not a principal | Use credentials for the principal (subscriber) user who holds the enrolment |
-| Unsupported enrolment | The agent’s enrolment type is not compatible with Self Assessment | Use only supported enrolments: `IR-SA-AGENT` or MTD Agent Services |
-
-> **Note:** Supporting users cannot access client-level Self Assessment or financial data.
-
----
+| **Scenario**                                                 | **Cause**                                                                                                      | **What to do**                                                                        |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Agent cannot access client’s Self Assessment data            | The agent has not registered for Self Assessment TBC: Confirm the process for agent registration               | TBC: Agent Services to advise on how agents register for Self Assessment              |
+| Supporting agent cannot access client’s Self Assessment data | Supporting agents cannot access financial data                                                                 | TBC: Confirm with Agent Services team                                                 |
+| Individual not registered for Self Assessment                | HMRC has no record of the individual being registered                                                          | Go to [Register for Self Assessment](https://www.gov.uk/register-for-self-assessment) |
 
 ## 500 Internal Server Error
-**Unexpected internal error. Please contact the service desk.**
+**Message:** Unexpected internal error. Please contact the service desk.
 
 This error indicates an unexpected issue occurred in HMRC systems. It is not caused by the request or client-side integration.
 
-| Scenario | Cause | What to do |
-|----------|-------|------------|
-| Internal issue (e.g. NINO-related) | Backend failure unrelated to request structure | Wait and retry. If the issue persists, contact the service desk with a correlation ID |
-| Other unexpected issue | Internal logic or system state error | Contact the HMRC service desk with timestamp and endpoint information |
+| **Scenario**                         | **Cause**                                      | **What to do**                     |
+| ------------------------------------ | ---------------------------------------------- | ---------------------------------- |
+| Duplicate records found              | Backend failure unrelated to request structure | TBC: contact the service desk      |
+| No record found for the UTR provided | Backend failure unrelated to request structure | TBC: contact the HMRC service desk |
 
-> **Note:** From the user's point of view, this is a system error. HMRC will need to investigate and resolve.
-
----
+> **Note:** From the user’s point of view, this is a system error. HMRC will need to investigate and resolve.
 
 ## 503 Service Unavailable
-**Service temporarily unavailable. Please try again later.**
+**Message:** Service temporarily unavailable. Please try again later.
 
 This error is returned when a required backend service is temporarily down or undergoing maintenance.
 
-| Scenario | Cause | What to do |
-|----------|-------|------------|
-| Authentication (Auth) service unavailable | The Auth platform is offline | Wait and retry later. This is typically short-lived |
-| CESA unavailable | Core SA system (e.g. CESA) is offline; other systems may remain available | Retry after a short interval. In some cases, partial data may be returned |
-| Other HMRC platform unavailable | A dependency such as identity verification or legacy data store is unavailable | Retry. If error persists, contact the service desk with details |
+| **Scenario**  | **Cause**                                    | **What to do**           |
+| ------------- | -------------------------------------------- | ------------------------ |
+| Request fails | Backend HMRC systems are down or unavailable | Wait and try again later |
 
 > **Note:** For known or scheduled outages, check the [HMRC API status page](https://api-platform-status.production.tax.service.gov.uk/).

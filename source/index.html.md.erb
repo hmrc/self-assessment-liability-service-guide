@@ -7,7 +7,7 @@ weight: 1
 
 # View Self Assessment account service guide
 
-Version 0.3 issued 15 July 2025
+Version 0.5 issued 22 July 2025
 ***
 
 This service guide explains how you can integrate your software with the [View Self Assessment Account API][TBD].
@@ -23,7 +23,9 @@ To give third-party software real-time and on-demand access to a taxpayer’s SA
 
 * Verify how payments have been applied
 * Reconcile account activity with their own records
-* Understand outstanding liabilities and due dates
+* Understand the amount owed and due dates before making a payment
+
+> It is recommended this API is used in conjunction with [Initiate payment API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/third-party-payments-external-api/1.0) to increase the likelihood of payments being correctly allocated based on current account data.
 
 ### Key features
 
@@ -74,5 +76,18 @@ This API plays a supporting role in HMRC’s efforts to improve payment accuracy
 16 July 2025
 
 * Added agent services content
+
+**Version 0.4**
+
+21 July 2025
+
+* Added error responses content
+
+**Version 0.5**
+
+22 July 2025
+
+* Removed glossary terms not relevant to third-party users
+* Updated overview, error responses and glossary content
 
 [TBD]: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
