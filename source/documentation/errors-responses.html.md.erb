@@ -1,0 +1,68 @@
+---
+title: Error Responses
+weight: 4
+---
+
+<%= partial 'documentation/partials/google_tag_manager_js' %>
+
+# Error Responses
+
+This section explains the error responses that may be returned by the View Self Assessment Account API. It describes the meaning of each error, root causes, and what action developers or end users should take to resolve them.
+
+All error responses follow standard HTTP status codes.
+
+## 400 Bad Request
+**Message:** Invalid request format or parameters.
+
+The request was malformed, missing required data, or included unsupported parameters. This error usually relates to how the request was constructed.
+
+| **Scenario**                                       | **Cause**                                                         | **What to do**                                   |
+| -------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------ |
+| Missing authentication token                       | The request does not include an `Authorization` header            | Ensure the request includes a valid bearer token |
+| Invalid or missing Unique Taxpayer Reference (UTR) | The UTR is missing, not 10 digits, or contains invalid characters | Include a valid 10-digit UTR in the request path |
+
+> **Note:** Check your integration against the [API specification](https://developer.service.hmrc.gov.uk/api-documentation) to avoid request format issues.
+
+## 401 Unauthorized
+**Message:** Authorisation failed.
+
+The request could not be completed because the required authorisation was not confirmed. If you are an agent, this may occur when valid credentials and a correct UTR are provided, but HMRC cannot verify that you have permission to access the client’s data.
+
+| **Scenario**                                        | **Cause**                                                               | **What to do**                                                                  |
+| --------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Agent cannot access client’s Self Assessment data   | The agent does not have an active relationship with the client          | TBC: Provide link or steps for agents to add clients                            |
+| Individual cannot access their Self Assessment data | HMRC cannot confirm the user’s identity with a high level of confidence | TBC: Confirm who the user should contact — API Platform Support or another team |
+
+## 403 Forbidden
+**Message:** Access not permitted.
+
+The request was valid, but the user is not registered for Self Assessment and cannot access this data.
+
+| **Scenario**                                                 | **Cause**                                                                                                      | **What to do**                                                                        |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Agent cannot access client’s Self Assessment data            | The agent has not registered for Self Assessment TBC: Confirm the process for agent registration               | TBC: Agent Services to advise on how agents register for Self Assessment              |
+| Supporting agent cannot access client’s Self Assessment data | Supporting agents cannot access financial data                                                                 | TBC: Confirm with Agent Services team                                                 |
+| Individual not registered for Self Assessment                | HMRC has no record of the individual being registered                                                          | Go to [Register for Self Assessment](https://www.gov.uk/register-for-self-assessment) |
+
+## 500 Internal Server Error
+**Message:** Unexpected internal error. Please contact the service desk.
+
+This error indicates an unexpected issue occurred in HMRC systems. It is not caused by the request or client-side integration.
+
+| **Scenario**                         | **Cause**                                      | **What to do**                     |
+| ------------------------------------ | ---------------------------------------------- | ---------------------------------- |
+| Duplicate records found              | Backend failure unrelated to request structure | TBC: contact the service desk      |
+| No record found for the UTR provided | Backend failure unrelated to request structure | TBC: contact the HMRC service desk |
+
+> **Note:** From the user’s point of view, this is a system error. HMRC will need to investigate and resolve.
+
+## 503 Service Unavailable
+**Message:** Service temporarily unavailable. Please try again later.
+
+This error is returned when a required backend service is temporarily down or undergoing maintenance.
+
+| **Scenario**  | **Cause**                                    | **What to do**           |
+| ------------- | -------------------------------------------- | ------------------------ |
+| Request fails | Backend HMRC systems are down or unavailable | Wait and try again later |
+
+> **Note:** For known or scheduled outages, check the [HMRC API status page](https://api-platform-status.production.tax.service.gov.uk/).
