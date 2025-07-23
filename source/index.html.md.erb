@@ -5,31 +5,31 @@ weight: 1
 <%= partial 'documentation/partials/google_tag_manager_js' %>
 <%= partial 'documentation/index' %>
 
-# View Self Assessment account service guide
+# View Self Assessment Account API service guide
 
 Version 0.5 issued 22 July 2025
 ***
 
-This service guide explains how you can integrate your software with the [View Self Assessment Account API][TBD].
+This service guide explains how you can integrate your software with the [View Self Assessment Account API][SA_ACCOUNT_API].
 
 ## Overview
 
-The View Self Assessment Account API provides third-party systems and developers with access to a structured, itemised view of a taxpayer's Self Assessment (SA) account. It enables trusted external systems such as agent platforms or accounting software to retrieve up-to-date details of charges, payments, credits, and interest applied to an individual's SA account.
+The View Self Assessment Account API provides third-party systems and developers with access to a structured, itemised breakdown of charges, payments, credits, and interest applied to a taxpayer’s Self Assessment account.
 
-This service is read-only and is designed to support better transparency and reconciliation of SA accounts, helping reduce user confusion and contributing to the wider HMRC goal of preventing misallocated payments.
+This service is read-only and is designed to support better transparency and reconciliation of Self Assessment accounts, helping reduce user confusion and contributing to the wider HMRC goal of preventing misallocated payments.
 
 ### Purpose
-To give third-party software real-time and on-demand access to a taxpayer’s SA account breakdown so that individuals and agents can:
+To give third-party software real-time and on-demand access to a taxpayer’s Self Assessment account breakdown so that individuals and agents can:
 
 * Verify how payments have been applied
 * Reconcile account activity with their own records
 * Understand the amount owed and due dates before making a payment
 
-> It is recommended this API is used in conjunction with [Initiate payment API](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/third-party-payments-external-api/1.0) to increase the likelihood of payments being correctly allocated based on current account data.
+> It is recommended this API is used in conjunction with [Initiate Payment API][SA_PAYMENTS_API] to increase the likelihood of payments being correctly allocated based on current account data.
 
 ### Key features
 
-* Granular breakdown of SA transactions: charges, payments, credits, and interest
+* Granular breakdown of Self Assessment transactions: charges, payments, credits, and interest
 * Effective dates for accurate reconciliation
 * Status indicators (e.g. due, cleared, overdue)
 * Totals and running balances where applicable
@@ -49,45 +49,99 @@ To give third-party software real-time and on-demand access to a taxpayer’s SA
 ### Intended users
 
 * Third-party developers building tax/accounting software
-* Digital agents integrating with HMRC systems on behalf of clients
+* Agents and software providers integrating with HMRC systems on behalf of clients
 
-This API plays a supporting role in HMRC’s efforts to improve payment accuracy and user understanding by equipping external systems with reliable SA account data.
+This API plays a supporting role in HMRC’s efforts to improve payment accuracy and user understanding by equipping external systems with reliable Self Assessment account data.
+
+## Getting started
+
+Before your software can access Self Assessment account data using this API, the end user must be fully registered with HMRC and have the correct credentials. This applies to both individual taxpayers and agents.
+
+### Access requirements for individuals
+
+To access their own Self Assessment account data, individuals must:
+
+1. [Register for Self Assessment](https://www.gov.uk/register-for-self-assessment) if they have not done so before
+2. Receive a Unique Taxpayer Reference (UTR). This is issued by HMRC after registration
+3. Create or sign in with a Government Gateway account. This account is used to authenticate using OAuth
+
+### Access requirements for agents
+
+To access Self Assessment account data on behalf of clients, agents must:
+
+1. [Register as a professional tax agent](https://www.gov.uk/guidance/find-out-how-to-register-as-a-professional-tax-agent-with-hmrc)
+2. [Set up an Agent Services Account (ASA)](https://www.gov.uk/guidance/register-with-hmrc-to-use-an-agent-services-account)
+3. Link the ASA to client Self Assessment authorisations. This can be done using the digital handshake or invitation process
+4. Use ASA Government Gateway credentials to authenticate with HMRC systems on behalf of clients
 
 ## End-to-end user journeys
 
+This section outlines the key integration steps your software must support when working with the View Self Assessment Account API.
+
+The API abstracts away the complexity of HMRC’s internal systems. As a third-party developer, you only interact with HMRC’s public interfaces.
+
+### 1. Authenticate the user
+
+Users authenticate using their Government Gateway account. This provides your software with an access token and information about the user’s identity and permissions.
+
+### 2. Request Self Assessment data
+
+Your software uses the access token to request Self Assessment account data. You can provide optional filters such as a date range to refine the results.
+
+### 3. Handle and present the response
+
+The API responds with a structured breakdown of Self Assessment account information. This may include charges, payments, credits, and interest.
+
+You should present this data clearly to the user, helping them understand their account activity and any amounts due.
+
+### 4. Support follow-on actions
+
+You can link this API with other HMRC APIs, for example, to support making a payment using the [Initiate Payment API][SA_PAYMENTS_API]. This helps ensure payments are made against the correct liabilities.
+
+### Journey diagram
+
+TBC:
+
 ## Related API documentation
+
+Refer to the main [View Self Assessment Account API documentation][SA_ACCOUNT_API] for endpoints, example requests, and schema definitions.
+
+## Fraud prevention headers
+
+You must include fraud prevention headers in all API requests. This is required before we can approve your application and issue production credentials.
+
+HMRC will assess the fraud prevention headers submitted by your application and must be satisfied that they meet accuracy and compliance standards.
+
+You can use the [Test Fraud Prevention Headers API](/api-documentation/docs/api/service/txm-fph-validator-api) to check whether the headers submitted by your application meet the latest requirements.
+
+Refer to the full [Fraud Prevention Headers specification](/guides/fraud-prevention) for guidance on how to construct and implement these headers correctly.
 
 ## Changelog
 
-**Version 0.1**
+#### Version 0.6 – 23 July 2025
+* Removed agent services page
+* Reordered pages
+* Added fraud prevention header guidance
+* Added end-to-end user journey
 
-1 July 2025
-
-* Initial draft version
-
-**Version 0.2**
-
-15 July 2025
-
-* Update overview and changelog content
-
-**Version 0.3**
-
-16 July 2025
-
-* Added agent services content
-
-**Version 0.4**
-
-21 July 2025
-
-* Added error responses content
-
-**Version 0.5**
-
-22 July 2025
-
+#### Version 0.5 – 22 July 2025
 * Removed glossary terms not relevant to third-party users
-* Updated overview, error responses and glossary content
+* Updated overview to improve clarity and consistency
+* Revised error responses section for improved guidance
+* Refined glossary entries to better reflect service terminology
 
-[TBD]: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
+#### Version 0.4 – 21 July 2025
+* Added error responses section covering common failure scenarios
+
+#### Version 0.3 – 16 July 2025
+* Added agent services content to reflect key user groups
+
+#### Version 0.2 – 15 July 2025
+* Expanded overview section
+* Added initial changelog structure
+
+#### Version 0.1 – 1 July 2025
+* Initial draft of the service guide
+
+[SA_ACCOUNT_API]: /api-documentation/docs/api/service/view-self-assessment-account
+[SA_PAYMENTS_API]: /api-documentation/docs/api/service/third-party-payments-external-api
