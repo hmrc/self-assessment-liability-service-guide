@@ -1,6 +1,6 @@
 ---
 title: Error Responses
-weight: 4
+weight: 2
 ---
 
 <%= partial 'documentation/partials/google_tag_manager_js' %>
@@ -16,10 +16,23 @@ All error responses follow standard HTTP status codes.
 
 The request was malformed, missing required data, or included unsupported parameters. This error usually relates to how the request was constructed.
 
-| **Scenario**                                       | **Cause**                                                         | **What to do**                                   |
-| -------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------ |
-| Missing authentication token                       | The request does not include an `Authorization` header            | Ensure the request includes a valid bearer token |
-| Invalid or missing Unique Taxpayer Reference (UTR) | The UTR is missing, not 10 digits, or contains invalid characters | Include a valid 10-digit UTR in the request path |
+<table>
+    <tr>
+      <th>Scenario</th>
+      <th>Cause</th>
+      <th>What to do</th>
+    </tr>
+    <tr>
+      <td>Missing authentication token</td>
+      <td>The request does not include an <code>Authorization</code> header</td>
+      <td>Ensure the request includes a valid bearer token</td>
+    </tr>
+    <tr>
+      <td>Invalid or missing Unique Taxpayer Reference (UTR)</td>
+      <td>The UTR is missing, not 10 digits, or contains invalid characters</td>
+      <td>Include a valid 10-digit UTR in the request path</td>
+    </tr>
+</table>
 
 > **Note:** Check your integration against the [API specification](https://developer.service.hmrc.gov.uk/api-documentation) to avoid request format issues.
 
@@ -28,31 +41,82 @@ The request was malformed, missing required data, or included unsupported parame
 
 The request could not be completed because the required authorisation was not confirmed. If you are an agent, this may occur when valid credentials and a correct UTR are provided, but HMRC cannot verify that you have permission to access the client’s data.
 
-| **Scenario**                                        | **Cause**                                                               | **What to do**                                                                  |
-| --------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| Agent cannot access client’s Self Assessment data   | The agent does not have an active relationship with the client          | TBC: Provide link or steps for agents to add clients                            |
-| Individual cannot access their Self Assessment data | HMRC cannot confirm the user’s identity with a high level of confidence | TBC: Confirm who the user should contact — API Platform Support or another team |
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>Cause</th>
+    <th>What to do</th>
+  </tr>
+  <tr>
+    <td>Agent cannot access client’s Self Assessment data</td>
+    <td>The agent does not have an active relationship with the client</td>
+    <td><a href="https://www.gov.uk/guidance/how-to-get-authorised-to-act-as-a-tax-agent-on-behalf-of-your-clients">Follow these steps</a> to get authorised to act on behalf of the client</td>
+  </tr>
+  <tr>
+    <td>Individual cannot access their Self Assessment data</td>
+    <td>HMRC cannot confirm the user’s identity with a high level of confidence</td>
+    <td>Contact the SDST team at <a href="mailto:SDSTeam@hmrc.gov.uk">SDSTeam@hmrc.gov.uk</a> for further support</td>
+  </tr>
+</table>
 
 ## 403 Forbidden
 **Message:** Access not permitted.
 
 The request was valid, but the user is not registered for Self Assessment and cannot access this data.
 
-| **Scenario**                                                 | **Cause**                                                                                                      | **What to do**                                                                        |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Agent cannot access client’s Self Assessment data            | The agent has not registered for Self Assessment TBC: Confirm the process for agent registration               | TBC: Agent Services to advise on how agents register for Self Assessment              |
-| Supporting agent cannot access client’s Self Assessment data | Supporting agents cannot access financial data                                                                 | TBC: Confirm with Agent Services team                                                 |
-| Individual not registered for Self Assessment                | HMRC has no record of the individual being registered                                                          | Go to [Register for Self Assessment](https://www.gov.uk/register-for-self-assessment) |
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>Cause</th>
+    <th>What to do</th>
+  </tr>
+  <tr>
+    <td>Agent cannot access client’s Self Assessment data</td>
+    <td>The agent has not registered for Self Assessment</td>
+    <td><a href="https://www.gov.uk/guidance/find-out-how-to-register-as-a-professional-tax-agent-with-hmrc">Follow this guidance</a> to register as a professional tax agent with HMRC</td>
+  </tr>
+  <tr>
+    <td>Supporting agent cannot access client’s Self Assessment data</td>
+    <td>Supporting agents cannot access financial data</td>
+    <td>
+      Supporting agents have limited access to Making Tax Digital for Income Tax services. They can only view a client’s business and property income. They cannot carry out all tasks available to main agents and cannot access the client’s Self Assessment account through this API.
+
+      To view a client’s Self Assessment account, a supporting agent must ask the client to approve a change to main agent authorisation.
+
+      <a href="https://www.gov.uk/guidance/add-your-client-authorisations-for-making-tax-digital-for-income-tax#add-your-authorisations-to-your-agent-services-account">
+        How to change authorisation from supporting agent to main agent
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>Individual not registered for Self Assessment</td>
+    <td>HMRC has no record of the individual being registered</td>
+    <td>Go to <a href="https://www.gov.uk/register-for-self-assessment">Register for Self Assessment</a></td>
+  </tr>
+</table>
+
 
 ## 500 Internal Server Error
 **Message:** Unexpected internal error. Please contact the service desk.
 
 This error indicates an unexpected issue occurred in HMRC systems. It is not caused by the request or client-side integration.
-
-| **Scenario**                         | **Cause**                                      | **What to do**                     |
-| ------------------------------------ | ---------------------------------------------- | ---------------------------------- |
-| Duplicate records found              | Backend failure unrelated to request structure | TBC: contact the service desk      |
-| No record found for the UTR provided | Backend failure unrelated to request structure | TBC: contact the HMRC service desk |
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>Cause</th>
+    <th>What to do</th>
+  </tr>
+  <tr>
+    <td>Duplicate records found</td>
+    <td>Backend failure unrelated to request structure</td>
+    <td>Contact the SDST team at <a href="mailto:SDSTeam@hmrc.gov.uk">SDSTeam@hmrc.gov.uk</a> for further support</td>
+  </tr>
+  <tr>
+    <td>No record found for the UTR provided</td>
+    <td>Backend failure unrelated to request structure</td>
+    <td>Contact the SDST team at <a href="mailto:SDSTeam@hmrc.gov.uk">SDSTeam@hmrc.gov.uk</a> for further support</td>
+  </tr>
+</table>
 
 > **Note:** From the user’s point of view, this is a system error. HMRC will need to investigate and resolve.
 
@@ -61,8 +125,17 @@ This error indicates an unexpected issue occurred in HMRC systems. It is not cau
 
 This error is returned when a required backend service is temporarily down or undergoing maintenance.
 
-| **Scenario**  | **Cause**                                    | **What to do**           |
-| ------------- | -------------------------------------------- | ------------------------ |
-| Request fails | Backend HMRC systems are down or unavailable | Wait and try again later |
+<table>
+    <tr>
+      <th>Scenario</th>
+      <th>Cause</th>
+      <th>What to do</th>
+    </tr>
+    <tr>
+      <td>Request fails</td>
+      <td>HMRC backend systems are down or unavailable</td>
+      <td>Wait and try again later</td>
+    </tr>
+</table>
 
 > **Note:** For known or scheduled outages, check the [HMRC API status page](https://api-platform-status.production.tax.service.gov.uk/).
