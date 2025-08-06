@@ -1,6 +1,6 @@
 ---
-title: Error Responses
-weight: 2
+title: Error Responses | View Self Assessment Account Service Guide
+weight: 3
 ---
 
 <%= partial 'documentation/partials/google_tag_manager_js' %>
@@ -34,7 +34,7 @@ The request was malformed, missing required data, or included unsupported parame
     </tr>
 </table>
 
-> **Note:** Check your integration against the [API specification](https://developer.service.hmrc.gov.uk/api-documentation) to avoid request format issues.
+> **Note:** Check your integration against the [API specification](/api-documentation/docs/api/service/self-assessment-liability-api/1.0/oas/page) to avoid request format issues.
 
 ## 401 Unauthorized
 **Message:** Authorisation failed.
@@ -95,11 +95,29 @@ The request was valid, but the user is not registered for Self Assessment and ca
   </tr>
 </table>
 
+## 404 Not Found
+**Message:** The requested resource could not be found.
+
+This error may occur when there is no data available for the UTR provided.
+
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>Cause</th>
+    <th>What to do</th>
+  </tr>
+  <tr>
+    <td>No data found</td>
+    <td>There is no Self Assessment data yet available for this UTR in HMRC systems</td>
+    <td>Sign in to <a href="https://www.gov.uk/log-in-file-self-assessment-tax-return">Self Assessment account</a> to check if tax return or account information is available.</td>
+  </tr>
+</table>
 
 ## 500 Internal Server Error
 **Message:** Unexpected internal error. Please contact the service desk.
 
 This error indicates an unexpected issue occurred in HMRC systems. It is not caused by the request or client-side integration.
+
 <table>
   <tr>
     <th>Scenario</th>
