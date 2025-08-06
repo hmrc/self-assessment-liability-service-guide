@@ -1,0 +1,51 @@
+---
+title: Test the API | View Self Assessment Account Service Guide
+weight: 2
+---
+
+<%= partial 'documentation/partials/google_tag_manager_js' %>
+
+# Test the API
+
+Use this guide to test the View Self Assessment Account API in HMRC’s sandbox environment.
+
+## Before you start
+
+- Read [how to use the Developer Hub](https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub)
+- Follow the [HMRC testing guidelines](https://developer.service.hmrc.gov.uk/api-documentation/docs/testing)
+
+The API returns dynamic data based on the `fromDate` you provide.
+
+## Sandbox base URL
+
+```
+https://test-api.service.hmrc.gov.uk
+```
+
+## Endpoint
+
+Use the `GET` method to get Self Assessment data for a test user:
+
+```json
+GET /individuals/self-assessment/breakdown/{utr}[?fromDate={fromDate}]
+```
+
+- Replace `{utr}` with a test UTR from the list of scenarios below.
+- Replace `{fromDate}` with an optional query parameter in `YYYY-MM-DD` format.
+- If `fromDate` is not provided, the API returns data for the current and previous tax year.
+
+## Test scenarios
+
+Use the UTR values below to simulate different responses.
+
+| Scenario | UTR          | Description                                        |
+|----------|--------------|----------------------------------------------------|
+| 400      | 1234567890   | Simulates a request with an invalid UTR           |
+| 404      | 0000000404   | TBC – to be provided                              |
+| 500      | 0000000500   | Simulates a request where the client is not authorised |
+| 503      | 0000000503   | Simulates a UTR not found in HMRC systems         |
+
+> **Note:** These UTRs only work in sandbox and will not return live data.
+
+Refer to the [API specification](/api-documentation/docs/api/service/self-assessment-liability-api/1.0/oas/page) for example requests and responses.
+
