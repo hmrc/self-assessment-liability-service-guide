@@ -1,5 +1,5 @@
 # Human read-able name for this site, displayed in the header bar
-service_name: View Self Assessment account service guide
+service_name: View Self Assessment Account Service Guide
 
 # The route that will be used to access this site (with tailing slash)
 service_link: /guides/self-assessment-liability-service-guide/
