@@ -32,6 +32,15 @@ The request was malformed, missing required data, or included unsupported parame
       <td>The UTR is missing, not 10 digits, or contains invalid characters</td>
       <td>Include a valid 10-digit UTR in the request path</td>
     </tr>
+    <tr>
+      <td>Invalid <code>fromDate</code> parameter</td>
+      <td>
+        The <code>fromDate</code> cannot be in the future, cannot be more than 7 years in the past,
+        and must follow the <code>YYYY-MM-DD</code> format
+      </td>
+      <td>Provide a <code>fromDate</code> that meets these rules</td>
+    </tr>
+
 </table>
 
 > **Note:** Check your integration against the [API specification](/api-documentation/docs/api/service/self-assessment-liability-api/1.0/oas/page) to avoid request format issues.

@@ -5,9 +5,9 @@ weight: 1
 <%= partial 'documentation/partials/google_tag_manager_js' %>
 <%= partial 'documentation/index' %>
 
-# View Self Assessment Account API service guide
+# View Self Assessment Account API Service Guide
 
-Version 0.7 issued 6 August 2025
+Version 1.0 issued 12 August 2025
 ***
 
 This service guide explains how you can integrate your software with the [View Self Assessment Account API][SA_ACCOUNT_API].
@@ -80,6 +80,10 @@ This section outlines the key integration steps your software must support when 
 
 The API removes the complexity of HMRC’s internal systems. As a third-party developer, you only interact with HMRC’s public interfaces.
 
+This diagram shows the full user journey when your software connects to the View Self Assessment Account API. It covers key steps from user authentication to retrieving and displaying account data, through to supporting further actions.
+
+![User journey diagram for accessing Self Assessment data via HMRC API](/images/user-journey-diagram.jpg)
+
 ### 1. Authenticate the user
 
 Users authenticate using their Government Gateway account. This provides your software with an access token and information about the user’s identity and permissions.
@@ -114,36 +118,43 @@ Refer to the full [Fraud Prevention Headers specification](/guides/fraud-prevent
 
 ## Changelog
 
-#### Version 0.7 – 6 August 2025
-* Updated error scenarios page to include 404 error scenarios
-* Renamed glossary page to terminology
-* Added Test the API page
-* Reordered pages
+### Version 1.0 – 12 August 2025
+- Added user journey diagram to main page.
+- Added *Test the API* page.
+- Updated error scenarios to include **404** cases.
+- Renamed *Glossary* page to *Terminology*.
+- Reordered page structure for improved flow.
 
-#### Version 0.6 – 23 July 2025
-* Removed agent services page
-* Reordered pages
-* Added fraud prevention header guidance
-* Added end-to-end user journey
+### Version 0.7 – 6 August 2025
+- Added *Test the API* page.
+- Updated error scenarios to include **404** cases.
+- Renamed *Glossary* page to *Terminology*.
+- Reordered page structure.
 
-#### Version 0.5 – 22 July 2025
-* Removed glossary terms not relevant to third-party users
-* Updated overview to improve clarity and consistency
-* Revised error responses section for improved guidance
-* Refined glossary entries to better reflect service terminology
+### Version 0.6 – 23 July 2025
+- Added fraud prevention header guidance.
+- Added end-to-end user journey.
+- Removed *Agent Services* page.
+- Reordered page structure.
 
-#### Version 0.4 – 21 July 2025
-* Added error responses section covering common failure scenarios
+### Version 0.5 – 22 July 2025
+- Updated overview for clarity and consistency.
+- Revised error responses for improved guidance.
+- Removed glossary terms not relevant to third-party users.
+- Refined terminology for accuracy.
 
-#### Version 0.3 – 16 July 2025
-* Added agent services content to reflect key user groups
+### Version 0.4 – 21 July 2025
+- Added error responses section for common failure scenarios.
 
-#### Version 0.2 – 15 July 2025
-* Expanded overview section
-* Added initial changelog structure
+### Version 0.3 – 16 July 2025
+- Added *Agent Services* content for key user groups.
 
-#### Version 0.1 – 1 July 2025
-* Initial draft of the service guide
+### Version 0.2 – 15 July 2025
+- Expanded overview section.
+- Added initial change log structure.
+
+### Version 0.1 – 1 July 2025
+- Initial draft of service guide.
 
 [SA_ACCOUNT_API]: /api-documentation/docs/api/service/view-self-assessment-account
 [SA_PAYMENTS_API]: /api-documentation/docs/api/service/third-party-payments-external-api
