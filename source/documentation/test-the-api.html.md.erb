@@ -14,8 +14,6 @@ Use this guide to test the View Self Assessment Account API in HMRC’s sandbox 
 - Read [how to use the Developer Hub](https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub)
 - Follow the [HMRC testing guidelines](https://developer.service.hmrc.gov.uk/api-documentation/docs/testing)
 
-The API returns dynamic data based on the `fromDate` you provide.
-
 ## Sandbox base URL
 
 ```
@@ -32,20 +30,51 @@ GET /individuals/self-assessment/breakdown/{utr}[?fromDate={fromDate}]
 
 - Replace `{utr}` with a test UTR from the list of scenarios below.
 - Replace `{fromDate}` with an optional query parameter in `YYYY-MM-DD` format.
-- If `fromDate` is not provided, the API returns data for the current and previous tax year.
 
 ## Test scenarios
 
+The API returns dynamic data based on the `fromDate` you provide.
+
+If `fromDate` is not provided, the API returns data for the current and previous tax year.
+
 Use the UTR values below to simulate different responses.
 
-| Scenario | UTR          | Description                                        |
-|----------|--------------|----------------------------------------------------|
-| 400      | 1234567890   | Simulates a request with an invalid UTR           |
-| 404      | 0000000404   | TBC – to be provided                              |
-| 500      | 0000000500   | Simulates a request where the client is not authorised |
-| 503      | 0000000503   | Simulates a UTR not found in HMRC systems         |
+<table>
+    <tr>
+      <th>UTR</th>
+      <th>Description</th>
+      <th>Expected Response</th>
+    </tr>
+    <tr>
+        <td>A valid UTR</td>
+        <td>Provide an auth token linked to the UTR in the request path.</td>
+        <td><strong>200 Success</strong></td>
+    </tr>
+    <tr>
+        <td>An invalid UTR</td>
+        <td>Send a request with an invalid UTR format.</td>
+        <td><strong>400 Bad Request</strong></td>
+    </tr>
+    <tr>
+      <td>A valid UTR</td>
+      <td>Provide an auth token linked to a <strong>different</strong> UTR than the one in the request path.</td>
+      <td><strong>401 Unauthorized</strong></td>
+    </tr>
+    <tr>
+      <td>HIP0000404</td>
+      <td>No data found for the UTR provided.</td>
+      <td><strong>404 Not Found</strong></td>
+    </tr>
+    <tr>
+      <td>CD00000500</td>
+      <td>Unexpected server error.</td>
+      <td><strong>500 Internal Server Error</strong></td>
+    </tr>
+</table>
 
 > **Note:** These UTRs only work in sandbox and will not return live data.
+
+
 
 Refer to the [API specification](/api-documentation/docs/api/service/self-assessment-liability-api/1.0/oas/page) for example requests and responses.
 
