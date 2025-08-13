@@ -154,5 +154,5 @@ Refer to the full [Fraud Prevention Headers specification](/guides/fraud-prevent
 ### Version 0.1 – 1 July 2025
 - Initial draft of service guide.
 
-[SA_ACCOUNT_API]: /api-documentation/docs/api/service/view-self-assessment-account
+[SA_ACCOUNT_API]: /api-documentation/docs/api/service/self-assessment-liability-api
 [SA_PAYMENTS_API]: /api-documentation/docs/api/service/third-party-payments-external-api
