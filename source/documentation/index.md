@@ -35,6 +35,7 @@ To give third-party software real-time and on-demand access to a taxpayer’s Se
 ### What this service does
 
 * Exposes detailed Self Assessment account data via a secure API
+* Provides data for up to a maximum of 6+1 years in the past
 * Supports integration into agent and accounting platforms
 * Facilitates user understanding of payment application and account balance
 
