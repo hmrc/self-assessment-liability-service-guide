@@ -36,7 +36,9 @@ To add new pages simply copy and paste one of the existing pages, it will automa
 
 ## Previewing
 
-#### Option 1 - Using Docker (recommended)
+There are two options to build and view changes as they are being worked on. Option 2 is a more manual process but has been verified to work.
+
+#### Option 1 - Using Docker
 
 Requirements:
 * [Docker](https://www.docker.com/)
@@ -50,7 +52,7 @@ The local URL and port where the files can be previewed will be output, this is 
 NB The first time this is run it builds the Docker image and installs dependencies so may take 5 mins.
 Subsequent runs will be much quicker.
 
-#### Option 2 - Local install (Not recommended)
+#### Option 2 - Local install
 
 Requirements:
 * [Ruby Version Manager][rbenv]
@@ -91,6 +93,20 @@ new SbtMicroserviceJobBuilder(TEAM, 'service-guide-skeleton')
 
 NB the version of Ruby is automatically picked up from `.ruby-version`. But the Node version isn't! Make sure that the 
 version you specify on the build job is the same as what is in `.node-version`.
+
+## Deploying
+
+The service guide can be deployed to either QA or Production environments.
+
+1. Ensure the changes to deploy are either in the _main_ branch or pushed to a branch with an associated Jenkins build. 
+2. Locate the Jenkins build associated with the desired service guide change. This will either be in the [self-assessment-liability-service-guide](https://build.tax.service.gov.uk/job/Digital%20Interfaces/job/Self%20Assessment%20Liability%20API/job/self-assessment-liability-service-guide/) job or the [self-assessment-liability-service-guide-pr-builder](https://build.tax.service.gov.uk/job/Digital%20Interfaces/job/Self%20Assessment%20Liability%20API/job/self-assessment-liability-service-guide-pr-builder/) job. Make a note of the build number of the job e.g. `0.13.0`.
+3. Navigate to the [Deploy Service](https://catalogue.tax.service.gov.uk/deploy-service?serviceName=self-assessment-liability-service-guide) page for this service guide.
+4. Select the desired version to deploy.
+5. Select the desired environment to deploy to.
+6. Wait for the deployment to complete.
+7. Verify your deployment by viewing either the [QA service guide](https://developer.qa.tax.service.gov.uk/guides/self-assessment-liability-service-guide/) or the [Production service guide](https://developer.service.hmrc.gov.uk/guides/self-assessment-liability-service-guide/).
+
+Note that when a git branch is merged into _main_, an automatic deployment to QA occurs; otherwise the service guide must be deployed into QA before being deployed into Production.
 
 ## FAQ
 
