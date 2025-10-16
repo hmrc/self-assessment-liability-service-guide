@@ -24,7 +24,7 @@ import org.scalatest.wordspec.AnyWordSpec
 class BuildSpec extends AnyWordSpec with Matchers {
   "Building the content" should {
     "produce static files" in {
-      val result = "bundle install" #&& Process("bundle exec middleman build --build-dir=public/ --clean", None) !
+      val result = Process("./batect build") !
 
       result shouldBe 0
     }
